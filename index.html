@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+
+    <style>
+     body {
+  font-family: "Ubuntu", sans-serif;
+  color: magenta;
+}
+
+
+h1 {
+  font-size: 25px;
+  color: magenta;
+}
+
+footer {
+      margin-bottom: 100px;
+      margin-left: 650px;
+}
+
+.card {
+  display: center;
+  margin-top: 30px;
+  margin-left: 250px;
+  width: 700px;
+  position: center;
+  border-color: purple;
+  box-shadow: 20px 20px 20px purple (231, 234, 246);
+}
+.card-body {
+  display: center;  
+  margin: 20px;
+  color: magenta;
+  text-align: center;
+}
+.mic {
+  font-size: 25px;
+  position: center;
+  top: 5px;
+  left: -5px;
+  text-align: center;
+}
+.mic:hover {
+  color: pink;
+  text-align: center;
+}
+.btn-primary {
+  background: purple;
+  text-align: center;
+}
+.btn:hover {
+  background: pink;
+  text-align: center;
+}
+.mainIcon {
+  text-align: center;
+}
+.cloudOne {
+  font-size: 55px;
+  position: center;
+  top: 10px;
+  left: 5px;
+  text-align: center;
+}
+.weatherNow {
+  font-size: 60px;
+  text-align: center;
+}
+.measure {
+  position: center;
+  top: -30px;
+  text-align: center;
+}
+
+.dateAndTime {
+  text-align: center;
+  color: magenta;
+}
+.clock {
+  font-size: 80px;
+  text-align: center;
+}
+.date {
+  font-size: 20px;
+  text-align: center;
+}
+.smallIcon {
+  font-size: 35px;
+  text-align: center;
+}
+.dayOfWeek {
+  text-align: center;
+  border: solid;
+  border-color: purple;
+  padding: 10px 5px;
+  margin: 0;
+  border-width: 0.5px;
+  border-radius: 20%;
+  box-shadow: 5px 5px 5px rgb(231, 234, 246);
+}
+
+.dayOfWeek:hover {
+  background: magenta;
+  color: magenta;
+  border: none;
+  text-align: center;
+}
+
+    </style>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap"
+      rel="stylesheet"/>
+
+    <script
+      src="https://kit.fontawesome.com/02a889d03a.js"
+      crossorigin="anonymous"
+    ></script>
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <h1>
+            What's The Weather Like?
+          </h1>
+
+          <div class="row">
+            <div class="col-10">
+              <form class="search-form" id="search-form">
+                <div class="row">
+                  <div class="col-10">
+                    <div class="mb-3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search city"
+                        id="search-city"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <input
+                      type="submit"
+                      class="btn btn-primary"
+                      value="Check"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-2">
+              <input
+                type="submit"
+                class="btn btn-success"
+                value="Current"
+                id="current-location"
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-5">
+              <div class="row">
+                <div class="col-5 mainIcon">
+                  <i class="fas fa-cloud cloudOne"></i>
+                </div>
+                <div class="col-7">
+                  <p>
+                    <span class="weatherNow" id="current-weather">8</span>
+                    <span class="measure">
+                      <a href="#" id="celcius">°C</a>
+                      |
+                      <a href="#" id="fahrenheit">°F</a>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <h5>
+                <span id="city">Cagliari</span>, <span id="country">Sardinia</span>
+              </h5>
+            </div>
+            <div class="col-3">
+              <p>
+                <br />
+                <strong>Feels like</strong>:
+                <span id="feels-like">29</span>°C<br />
+                <strong>Humidity</strong>: <span id="humidity"> 91</span>%<br />
+                <strong>Wind </strong>: <span id="wind">28</span>km/h
+              </p>
+            </div>
+            <div class="col-4 dateAndTime">
+              <i class="far fa-clock clock"></i>
+              <br />
+              <br />
+              <p class="date" id="currentDate"></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <div class="dayOfWeek">
+                <p>Sat</p>
+                <i class="fas fa-cloud smallIcon"></i>
+                <br />
+                33° | 24°
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="dayOfWeek">
+                <p>Sun</p>
+                <i class="fas fa-cloud smallIcon"></i>
+                <br />
+                34° | 20°
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="dayOfWeek">
+                <p>Mon</p>
+                <i class="fas fa-cloud-showers-heavy smallIcon"></i>
+                <br />
+                36° | 22°
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="dayOfWeek">
+                <p>Tue</p>
+                <i class="fas fa-cloud-showers-heavy smallIcon"></i>
+                <br />
+                37° | 28°
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="dayOfWeek">
+                <p>Wed</p>
+                <i class="fas fa-cloud-sun smallIcon"></i>
+                <br />
+                31° | 26°
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="dayOfWeek">
+                <p>Thu</p>
+                <i class="fas fa-cloud-sun smallIcon"></i>
+                <br />
+                32° | 28°
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+    <script>
+        function date(date) {
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let currentYear = date.getFullYear();
+  let currentMonth = months[date.getMonth()];
+  let currentDay = days[date.getDay()];
+  let currentDate = date.getDate();
+  let currentHour = date.getHours();
+  let currentMinute = date.getMinutes();
+
+  let today = `${currentDay}, ${currentMonth} ${currentDate} ${currentYear}, ${currentHour}:${currentMinute}`;
+  return today;
+}
+
+let currentDate = document.querySelector("#currentDate");
+currentDate.innerHTML = date(new Date());
+
+function searchCity(event) {
+  event.preventDefault();
+  let changeCity = document.querySelector("#search-city");
+  displayCity(changeCity.value);
+}
+
+function displayCity(city) {
+  let apiKey = "ae3ffbb2ba5fd172289cc56d929ac85e";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(getTemp);
+}
+
+let checkButton = document.querySelector("#search-form");
+checkButton.addEventListener("submit", searchCity);
+
+function getTemp(response) {
+  let temperature = Math.round(response.data.main.temp);
+  console.log(response.data);
+  let currentTemp = document.querySelector("#current-weather");
+  currentTemp.innerHTML = temperature;
+  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#country").innerHTML = response.data.sys.country;
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.main.feels_like
+  );
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+}
+
+function showCurrentLocation(position) {
+  let apiKey = `ae3ffbb2ba5fd172289cc56d929ac85e`;
+  let latitude = position.coords.latitude;
+  let longitude = position.coords.longitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(getTemp);
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(showCurrentLocation);
+}
+
+let currentLocationButton = document.querySelector("#current-location");
+currentLocationButton.addEventListener("click", getCurrentLocation);
+
+    </script>
+    <footer>
+		<p>💻 coded by </p>
+		<a href="https://github.com/abracamagda" target="noopener">Amigdala 'Magda' Pala</a>
+	</footer>
+    </body>
+
+</html>
